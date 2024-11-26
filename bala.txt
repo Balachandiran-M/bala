@@ -1,4 +1,15 @@
 my name is balachandiran and i am studying in gce salem 
 second modification
 third modification
-fourth modification
+resource "oci_core_route_table" "private_route_table" {
+  compartment_id = oci_identity_compartment.kubernetes-compartment.id
+  vcn_id = oci_core_vcn.kubernetes_vcn.id
+    
+  display_name = var.private_route_table_display_name
+
+}
+
+resource "oci_core_internet_gateway" "internet_gateway" {
+    compartment_id = oci_identity_compartment.kubernetes-compartment.id
+    vcn_id         = oci_core_vcn.kubernetes_vcn.id
+}
